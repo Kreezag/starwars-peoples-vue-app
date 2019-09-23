@@ -8,10 +8,14 @@
     </v-app-bar>
     <v-content>
       <v-container>
+
+        <router-view />
         <v-layout text-center wrap>
-          <v-flex xs-8 mb-8>
-            <TableCharacters />
-          </v-flex>
+          <div id="nav">
+            <router-link to="/">Home</router-link>
+            /
+            <router-link to="/about">About</router-link>
+          </div>
         </v-layout>
       </v-container>
     </v-content>
