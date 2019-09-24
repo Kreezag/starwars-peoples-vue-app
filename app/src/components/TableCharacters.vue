@@ -13,7 +13,7 @@
         <td class="text-start">{{ props.item.height }}</td>
         <td class="text-start">{{ props.item.mass }}</td>
         <td class="text-start">
-          <router-link :to="{ path: `about/`, params: { characterId: props.item.more } }">{{
+          <router-link :to="{ path: `about/${props.item.more}` }">{{
             props.item.more
           }}</router-link>
         </td>
@@ -22,15 +22,9 @@
   </v-data-table>
 </template>
 
-<!--<th>Name</th>-->
-<!--<th>Birth Year</th>-->
-<!--<th>Gender</th>-->
-<!--<th>Height</th>-->
-<!--<th>Mass</th>-->
-<!--<th>more</th>-->
+
 
 <script lang="ts">
-import Vue from 'vue';
 const apiURL = 'https://swapi.co/api/people/';
 
 export default {
