@@ -1,10 +1,25 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="items"
     :items-per-page="5"
     class="elevation-1"
-  ></v-data-table>
+  >
+    <template v-slot:item="{ ...props }">
+      <tr>
+        <td class="text-start">{{ props.item.name }}</td>
+        <td class="text-start">{{ props.item.birth }}</td>
+        <td class="text-start">{{ props.item.gender }}</td>
+        <td class="text-start">{{ props.item.height }}</td>
+        <td class="text-start">{{ props.item.mass }}</td>
+        <td class="text-start">
+          <router-link :to="{ path: `about/`, params: { characterId: props.item.more } }">{{
+            props.item.more
+          }}</router-link>
+        </td>
+      </tr>
+    </template>
+  </v-data-table>
 </template>
 
 <!--<th>Name</th>-->
@@ -29,22 +44,22 @@ export default {
         { text: 'Mass', value: 'mass' },
         { text: 'more', value: 'more' },
       ],
-      desserts: [
+      items: [
         {
           name: 'Frozen Yogurt',
           birth: 158,
           gender: 6.0,
           height: 24,
           mass: 4.0,
-          more: '1%',
+          more: '1',
         },
         {
           name: 'Ice cream sandwich',
-            birth: 159,
-            gender: 6.0,
-            height: 24,
-            mass: 4.0,
-            more: '1%',
+          birth: 159,
+          gender: 6.0,
+          height: 24,
+          mass: 4.0,
+          more: '2',
         },
       ],
     };
