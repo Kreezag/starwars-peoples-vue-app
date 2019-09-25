@@ -8,13 +8,13 @@
     <template v-slot:item="{ ...props }">
       <tr>
         <td class="text-start">{{ props.item.name }}</td>
-        <td class="text-start">{{ props.item.birth }}</td>
+        <td class="text-start">{{ props.item.birth_year }}</td>
         <td class="text-start">{{ props.item.gender }}</td>
         <td class="text-start">{{ props.item.height }}</td>
         <td class="text-start">{{ props.item.mass }}</td>
         <td class="text-start">
-          <router-link :to="{ path: `about/${props.item.more}` }">{{
-            props.item.more
+          <router-link :to="{ path: `about/${props.item.id}` }">{{
+            props.item.id
           }}</router-link>
         </td>
       </tr>
@@ -38,32 +38,15 @@ export default {
         { text: 'Mass', value: 'mass' },
         { text: 'more', value: 'more' },
       ],
-      items: [
-        {
-          name: 'Frozen Yogurt',
-          birth: 158,
-          gender: 6.0,
-          height: 24,
-          mass: 4.0,
-          more: '1',
-        },
-        {
-          name: 'Ice cream sandwich',
-          birth: 159,
-          gender: 6.0,
-          height: 24,
-          mass: 4.0,
-          more: '2',
-        },
-      ],
+      items: [],
     };
   },
   methods: {
-    fetchData: function(page) {
+    fetchData: function(page:number) {
       const requestUrl = new URL(apiURL);
 
       if (page) {
-        requestUrl.searchParams.set('page', page);
+        requestUrl.searchParams.set('page', String(page));
       }
 
       const request = new Request(String(requestUrl), { method: 'GET' });
@@ -75,9 +58,16 @@ export default {
           items: result.results,
         }));
     },
+
   },
   created: function() {
-    this.fetchData(1);
+      const prepareItemWithId = (item:any) => ({
+          ...item,
+          id: String(item.url).substring(item.url.lastIndexOf('/') - 1, item.url.lastIndexOf('/')),
+      });
+
+
+    this.fetchData(1).then(({ items }) => this.items = items.map(prepareItemWithId))
   },
 };
 </script>
