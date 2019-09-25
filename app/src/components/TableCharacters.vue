@@ -49,7 +49,7 @@ export default {
         requestUrl.searchParams.set('page', String(page));
       }
 
-      const request = new Request(String(requestUrl), { method: 'GET' });
+      const request = new Request(requestUrl.toString(), { method: 'GET' });
 
       return fetch(request)
         .then(response => response.json())
@@ -62,10 +62,7 @@ export default {
   created: function() {
     const prepareItemWithId = (item: any) => ({
       ...item,
-      id: String(item.url).substring(
-        item.url.lastIndexOf('/') - 1,
-        item.url.lastIndexOf('/'),
-      ),
+      id: String(item.url).replace(/[^0-9]*/g, '')
     });
 
     this.fetchData(1).then(
