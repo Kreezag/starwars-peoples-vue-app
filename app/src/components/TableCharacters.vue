@@ -13,16 +13,15 @@
         <td class="text-start">{{ props.item.height }}</td>
         <td class="text-start">{{ props.item.mass }}</td>
         <td class="text-start">
-          <router-link :to="{ path: `about/${props.item.id}` }">{{
-            props.item.id
-          }}</router-link>
+          <router-link
+            :to="{ name: 'aboutCharacter', params: { id: props.item.id } }"
+            >{{ props.item.id }}</router-link
+          >
         </td>
       </tr>
     </template>
   </v-data-table>
 </template>
-
-
 
 <script lang="ts">
 const apiURL = 'https://swapi.co/api/people/';
@@ -42,7 +41,7 @@ export default {
     };
   },
   methods: {
-    fetchData: function(page:number) {
+    fetchData: function(page: number) {
       const requestUrl = new URL(apiURL);
 
       if (page) {
@@ -58,16 +57,19 @@ export default {
           items: result.results,
         }));
     },
-
   },
   created: function() {
-      const prepareItemWithId = (item:any) => ({
-          ...item,
-          id: String(item.url).substring(item.url.lastIndexOf('/') - 1, item.url.lastIndexOf('/')),
-      });
+    const prepareItemWithId = (item: any) => ({
+      ...item,
+      id: String(item.url).substring(
+        item.url.lastIndexOf('/') - 1,
+        item.url.lastIndexOf('/'),
+      ),
+    });
 
-
-    this.fetchData(1).then(({ items }) => this.items = items.map(prepareItemWithId))
+    this.fetchData(1).then(
+      ({ items }) => (this.items = items.map(prepareItemWithId)),
+    );
   },
 };
 </script>
