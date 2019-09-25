@@ -6,20 +6,10 @@
     :loading="loading"
     class="elevation-1"
   >
-    <template v-slot:item="{ ...props }">
-      <tr>
-        <td class="text-start">{{ props.item.name }}</td>
-        <td class="text-start">{{ props.item.birth_year }}</td>
-        <td class="text-start">{{ props.item.gender }}</td>
-        <td class="text-start">{{ props.item.height }}</td>
-        <td class="text-start">{{ props.item.mass }}</td>
-        <td class="text-start">
-          <router-link
-            :to="{ name: 'aboutCharacter', params: { id: props.item.id } }"
-            >{{ props.item.id }}</router-link
-          >
-        </td>
-      </tr>
+    <template v-slot:item.more="{ item }">
+      <router-link :to="{ name: 'aboutCharacter', params: { id: item.id } }">
+        {{ item.id }}
+      </router-link>
     </template>
   </v-data-table>
 </template>
@@ -39,7 +29,7 @@ export default {
         { text: 'more', value: 'more' },
       ],
       items: [],
-      error: null
+      error: null,
     };
   },
   computed: {
