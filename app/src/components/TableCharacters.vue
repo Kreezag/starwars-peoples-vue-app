@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     :items-per-page="5"
+    loading="items.length > 0"
     class="elevation-1"
   >
     <template v-slot:item="{ ...props }">
