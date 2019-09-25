@@ -3,7 +3,7 @@
     :headers="headers"
     :items="items"
     :items-per-page="10"
-    loading="items.length > 0"
+    :loading="loading"
     class="elevation-1"
   >
     <template v-slot:item="{ ...props }">
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-const apiURL = 'https://swapi.co/api/people/';
+import { getPeoples } from '../services/apiService.js';
 
 export default {
   data() {
@@ -39,35 +39,25 @@ export default {
         { text: 'more', value: 'more' },
       ],
       items: [],
+      error: null
     };
   },
-  methods: {
-    fetchData: function(page: number) {
-      const requestUrl = new URL(apiURL);
-
-      if (page) {
-        requestUrl.searchParams.set('page', String(page));
-      }
-
-      const request = new Request(requestUrl.toString(), { method: 'GET' });
-
-      return fetch(request)
-        .then(response => response.json())
-        .then(result => ({
-          totalCount: result.count,
-          items: result.results,
-        }));
+  computed: {
+    loading: function() {
+      return this.items.length === 0;
     },
   },
   created: function() {
     const prepareItemWithId = (item: any) => ({
       ...item,
-      id: String(item.url).replace(/[^0-9]*/g, '')
+      id: String(item.url).replace(/[^0-9]*/g, ''),
     });
 
-    this.fetchData(1).then(
-      ({ items }) => (this.items = items.map(prepareItemWithId)),
-    );
+    getPeoples(null, null)
+      .then(({ data }) => (this.items = data.map(prepareItemWithId)))
+      .catch(({ error }) => {
+        this.error = error;
+      });
   },
 };
 </script>
