@@ -22,7 +22,7 @@ export default {
     return {
       headers: [
         { text: 'Name', value: 'name' },
-        { text: 'Birth', value: 'birth' },
+        { text: 'Birth', value: 'birth_year' },
         { text: 'Gender', value: 'gender' },
         { text: 'Height', value: 'height' },
         { text: 'Mass', value: 'mass' },
