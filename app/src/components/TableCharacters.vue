@@ -30,12 +30,8 @@ export default {
       ],
       items: [],
       error: null,
+      loading: null,
     };
-  },
-  computed: {
-    loading: function() {
-      return this.items.length === 0;
-    },
   },
   created: function() {
     const prepareItemWithId = (item: any) => ({
@@ -43,8 +39,14 @@ export default {
       id: String(item.url).replace(/[^0-9]*/g, ''),
     });
 
+    this.loading = true;
+
     getPeoples(null, null)
-      .then(({ data }) => (this.items = data.map(prepareItemWithId)))
+      .then(({ data }) => {
+        this.loading = false;
+
+        this.items = data.map(prepareItemWithId);
+      })
       .catch(({ error }) => {
         this.error = error;
       });
