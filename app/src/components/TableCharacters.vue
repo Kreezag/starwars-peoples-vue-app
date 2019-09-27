@@ -37,26 +37,28 @@ export default {
       loading: null,
     };
   },
-  created: void function(this: {
-    loading: null | boolean;
-    items: any;
-    error: null | string;
-  }) {
+  created: function() {
+    let self: any = this;
+
     const prepareItemWithId = (item: PeopleItem) => ({
       ...item,
       id: String(item.url).replace(/[^0-9]*/g, ''),
     });
 
-    this.loading = true;
+    self.loading = true;
+
+    console.log('start fetch');
 
     getPeoples()
       .then(({ data }: any) => {
-        this.loading = false;
+        self.loading = false;
 
-        this.items = data.map(prepareItemWithId);
+        console.log('data', data);
+
+        self.items = data.map(prepareItemWithId);
       })
       .catch(({ error }: any) => {
-        this.error = error;
+        self.error = error;
       });
   },
 };
