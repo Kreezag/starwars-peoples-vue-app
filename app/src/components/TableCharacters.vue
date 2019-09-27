@@ -17,6 +17,10 @@
 <script lang="ts">
 import { getPeoples } from '@/services/apiService';
 
+interface PeopleItem {
+  url: string;
+}
+
 export default {
   data() {
     return {
@@ -33,8 +37,12 @@ export default {
       loading: null,
     };
   },
-  created: function() {
-    const prepareItemWithId = (item: any) => ({
+  created: void function(this: {
+    loading: null | boolean;
+    items: any;
+    error: null | string;
+  }) {
+    const prepareItemWithId = (item: PeopleItem) => ({
       ...item,
       id: String(item.url).replace(/[^0-9]*/g, ''),
     });
@@ -42,12 +50,12 @@ export default {
     this.loading = true;
 
     getPeoples()
-      .then(({ data }) => {
+      .then(({ data }: any) => {
         this.loading = false;
 
         this.items = data.map(prepareItemWithId);
       })
-      .catch(({ error }) => {
+      .catch(({ error }: any) => {
         this.error = error;
       });
   },
