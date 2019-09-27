@@ -2,33 +2,36 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>STARWARS Characters</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-app-bar>
-
     <v-content>
-      <HelloWorld/>
+      <v-container>
+
+        <router-view />
+        <v-layout text-center wrap>
+          <div id="nav">
+            <router-link to="/">Home</router-link>
+            /
+            <router-link to="/test">Test</router-link>
+            /
+            <router-link to="/about/0">About</router-link>
+          </div>
+        </v-layout>
+      </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import TableCharacters from './components/TableCharacters.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
-    HelloWorld,
+    TableCharacters,
   },
   data: () => ({
     //
