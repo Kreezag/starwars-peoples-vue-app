@@ -41,7 +41,7 @@ export default {
 
     this.loading = true;
 
-    getPeoples(null, null)
+    getPeoples()
       .then(({ data }) => {
         this.loading = false;
 
