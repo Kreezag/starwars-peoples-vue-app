@@ -47,14 +47,9 @@ export default {
 
     self.loading = true;
 
-    console.log('start fetch');
-
     getPeoples()
       .then(({ data }: any) => {
         self.loading = false;
-
-        console.log('data', data);
-
         self.items = data.map(prepareItemWithId);
       })
       .catch(({ error }: any) => {
