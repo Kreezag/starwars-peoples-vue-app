@@ -14,12 +14,12 @@ export default new Router({
     {
       path: '/test',
       name: 'test',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: () => import(/* webpackChunkName: "templates" */ './views/Test.vue' ),
     },
     {
       path: '/about/:id',
       name: 'aboutCharacter',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component:() => import(/* webpackChunkName: "templates" */ './views/About.vue' ),
     },
   ],
 });
