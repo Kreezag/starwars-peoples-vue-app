@@ -7,7 +7,7 @@ const makeGetFetch = (url, { searchParams = {} } = {}) => {
 
   if (isEmptyObj(searchParams)) {
     Object.entries(searchParams).forEach((key, value) => {
-      requestUrl.searchParams.set(key, value);
+      requestUrl.searchParams.set(String(key), String(value));
     });
   }
 
@@ -16,7 +16,7 @@ const makeGetFetch = (url, { searchParams = {} } = {}) => {
   return fetch(request);
 };
 
-const getPeoples = (/*count, offset*/) => {
+const getPeoples = () => {
   let resultPeoples = [];
 
   const mkRequest = url =>

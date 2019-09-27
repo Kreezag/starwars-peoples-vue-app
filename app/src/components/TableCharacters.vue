@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <v-data-table
     :headers="headers"
     :items="items"
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { getPeoples } from '../services/apiService.js';
+import { getPeoples } from '@/services/apiService';
 
 export default {
   data() {
