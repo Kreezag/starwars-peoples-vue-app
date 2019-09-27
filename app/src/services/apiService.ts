@@ -1,9 +1,9 @@
 const apiPeople = 'https://swapi.co/api/people/';
 
-const makeGetFetch = (url, { searchParams = {} } = {}) => {
+const makeGetFetch = (url: string, { searchParams = {} } = {}) => {
   const requestUrl = new URL(url);
 
-  const isEmptyObj = searchParams => Object.keys(searchParams).length;
+  const isEmptyObj = (searchParams: any) => Object.keys(searchParams).length;
 
   if (isEmptyObj(searchParams)) {
     Object.entries(searchParams).forEach((key, value) => {
@@ -17,12 +17,12 @@ const makeGetFetch = (url, { searchParams = {} } = {}) => {
 };
 
 const getPeoples = () => {
-  let resultPeoples = [];
+  let resultPeoples: Array<object> = [];
 
-  const mkRequest = url =>
+  const mkRequest: any = (url: string) =>
     makeGetFetch(url)
       .then(res => res.json())
-      .then(data => {
+      .then((data: any) => {
         if (data.results) {
           resultPeoples = [...resultPeoples, ...data.results];
         }
@@ -37,7 +37,7 @@ const getPeoples = () => {
       data: resultPeoples,
       error: null,
     }),
-    () => error => ({
+    (error: string) => ({
       data: resultPeoples,
       error,
     }),
