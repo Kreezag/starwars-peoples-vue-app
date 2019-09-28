@@ -26,12 +26,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import TableCharacters from './components/TableCharacters.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
-    TableCharacters,
   },
   data: () => ({
     //
