@@ -38,7 +38,7 @@ export default {
     };
   },
   created: function() {
-    let self: any = this;
+    const self: any = this;
 
     const prepareItemWithId = (item: PeopleItem) => ({
       ...item,
