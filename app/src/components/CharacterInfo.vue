@@ -37,10 +37,18 @@
                 <v-col cols="12" md="10"> Height: {{ data.height }} </v-col>
                 <v-col cols="12" md="10"> Mass: {{ data.mass }} </v-col>
                 <v-col cols="12" md="10">
-                  Species: {{ data.species.name }}
+                  Species:
+                  <span v-if="data.species.length" v-for="specie in data.species">
+                    <div>{{specie.name}}</div>
+                  </span>
+                  <span v-if="!data.starships.length">-</span>
                 </v-col>
                 <v-col cols="12" md="10">
-                  Starships: {{ data.starships.length ? data.starships : '-' }}
+                  Starships:
+                  <span v-if="data.starships.length" v-for="starship in data.starships">
+                    <div>{{starship.name}}</div>
+                  </span>
+                  <span v-if="!data.starships.length">-</span>
                 </v-col>
               </v-row>
             </v-container>
