@@ -19,7 +19,6 @@
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-content>
-      <v-container>
         <router-view />
         <v-layout text-center wrap>
           <div id="nav">
@@ -30,7 +29,6 @@
             <router-link to="/about/1">About</router-link>
           </div>
         </v-layout>
-      </v-container>
     </v-content>
   </v-app>
 </template>

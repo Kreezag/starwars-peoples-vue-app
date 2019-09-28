@@ -1,9 +1,6 @@
 <template>
-  <div class="about">
-    <CharacterInfo />
-  </div>
+  <CharacterInfo />
 </template>
-
 
 <script lang="ts">
 import Vue from 'vue';

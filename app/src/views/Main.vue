@@ -1,9 +1,11 @@
 <template>
-  <v-layout text-center wrap>
-    <v-flex xs-8 mb-8>
-      <TableCharacters />
-    </v-flex>
-  </v-layout>
+  <v-container>
+    <v-layout text-center wrap>
+      <v-flex xs-8 mb-8>
+        <TableCharacters />
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
