@@ -19,7 +19,7 @@ export default new Router({
     {
       path: '/about/:id',
       name: 'aboutCharacter',
-      component:() => import(/* webpackChunkName: "templates" */ './views/About.vue' ),
+      component: () => import(/* webpackChunkName: "templates" */ './views/About.vue' ),
     },
   ],
 });
